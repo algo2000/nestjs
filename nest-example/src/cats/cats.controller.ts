@@ -20,6 +20,7 @@ import { RolesGuard } from 'src/roles.guard';
 import { ValidationPipe } from 'src/validation.pipe';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
+import { Cat } from './interface/cat.interface';
 
 @Controller('cats')
 @UseGuards(RolesGuard)
@@ -42,7 +43,7 @@ export class CatsController {
   // }
 
   @Get()
-  async findAll() {
+  async findAll(): Promise<Cat[]> {
     // throw new HttpException(
     //   {
     //     status: HttpStatus.FORBIDDEN,
@@ -50,7 +51,7 @@ export class CatsController {
     //   },
     //   HttpStatus.FORBIDDEN,
     // );
-    throw new ForbiddenException();
+    return this.catsService.findAll();
   }
 
   @Get('docs')

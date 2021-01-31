@@ -6,10 +6,13 @@ import {
 } from '@nestjs/common';
 import { CatsController } from './cats/cats.controller';
 import { CatsModule } from './cats/cats.module';
+import { CatsService } from './cats/cats.service';
 import { logger } from './logger.middleware';
 
 @Module({
   imports: [CatsModule],
+  controllers: [CatsController],
+  providers: [CatsService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
